@@ -78,12 +78,7 @@ for c in cities:
                     <center>
                         <hr width="80%"/>
                     </center>'''
-
-pagWeb += f'''
-					    <center>
-					    	<hr width="80%"/>
-					    </center>'''
-
+                
 pagWeb += f'''
 				</td>
 			</tr>
