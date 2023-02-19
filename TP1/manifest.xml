@@ -1,1 +1,28 @@
-tmp
+<?xml version="1.0" encoding="UTF-8"?>
+<manifesto>
+    <meta>
+        <título>Trabalho de Casa 1</título>
+        <!-- <subtítulo></subtítulo> -->
+        <data>2023-02-19</data>
+        <autor>
+            <nome>Rui Miguel Borges Braga</nome>
+            <id>PG50743</id>
+            <gitlink>https://github.com/RayMightBeWrong/RPCW2023</gitlink>
+        </autor>
+        <uc>RPCW</uc>
+    </meta>
+    <resumo>
+        <p>No primeiro trabalho de casa, era pedido fazer uma página web sobre um tema começado pela letra H e adicionalmente, completar o mapa virtual parcialmente desenvolvido na aula com as ligações de cada cidade.</p>
+        <p>O tema escolhido com a letra H foi o hipopótamo. Para o fazer foi usada a informação da <xref url="https://pt.wikipedia.org/wiki/Hipop%C3%B3tamo-comum">página da Wikipédia referente ao hipopótamo</xref>.</p>
+        <p>O formato da página web consiste numa introdução centrada no início da página, com o resto da informação igualmente centrada debaixo desta, organizada por assunto. De resto, existe um índice com os vários assuntos à esquerda da página e à direita uma pequena compilação de informação básica.</p>
+        <p>Para completar o mapa virtual, a informação sobre as cidades e as suas ligações é guardada num dicionário de dicionários. Um dicionário relativo a uma cidade é identificável por o id da cidade e contém o nome, po
+            pulação, descrição, distrito e ligações de cada cidade. Cada ligação é guardado num tuplo no estilo (cidade destino, distância).</p>
+        <p>De resto, a informação na página web gerada está ordenada alfabeticamente por cidade e as ligações de cada cidade estão também ordenadas alfabeticamente pelo nome da cidade destino.</p>
+    </resumo>
+    <resultados>
+        <resultado path="https://github.com/RayMightBeWrong/RPCW2023/blob/master/TP1/H/hipopotamo.html">Página HTML desenvolvida, sobre hipopótamos</resultado>
+        <resultado path="https://github.com/RayMightBeWrong/RPCW2023/blob/master/TP1/mapa/mapa.json">Ficheiro JSON com várias cidades portuguesas com diversas informações e ligações entre estas</resultado>
+        <resultado path="https://github.com/RayMightBeWrong/RPCW2023/blob/master/TP1/mapa/mapa.py">Script Python que gera uma página HTML com a informação do ficheiro mapa.json</resultado>
+        <resultado path="https://github.com/RayMightBeWrong/RPCW2023/blob/master/TP1/mapa/mapa.html">Página HTML gerada pelo ficheiro mapa.py</resultado>
+    </resultados>
+</manifesto>
