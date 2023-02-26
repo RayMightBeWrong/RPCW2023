@@ -3,19 +3,33 @@ var url = require('url')
 var fs = require('fs')
 
 var server = http.createServer(function (req, res){
-    var numPag = req.url.substring(1,4)
-    console.log(numPag)
-
-    fs.readFile('xml_files/arq' + numPag + '.xml', function(err, data){
-        res.writeHead(200, {'Content-Type': 'text/xml'})
-        if (err){
-            res.write("<?xml version=\"1.0\" encoding=\"windows-1252\"?><erro>That's rough buddy.</erro>")
-        }
-        else{
-            res.write(data)
-        }
-        res.end()
-    })
+    if (req.url === '/'){
+        fs.readFile('index.html', function(err, data){
+            res.writeHead(200, {'Content-Type': 'text/html'})
+            if (err){
+                res.write(err)
+            }
+            else{
+                res.write(data)
+            }
+            res.end()
+        })
+    }
+    else{
+        var numPag = req.url.substring(1,4)
+        fs.readFile('html_files/arq' + numPag + '.html', function(err, data){
+        //fs.readFile('xml_files/arq' + numPag + '.xml', function(err, data){
+            res.writeHead(200, {'Content-Type': 'text/html'})
+            //res.writeHead(200, {'Content-Type': 'text/xml'})
+            if (err){
+                res.write(err)
+            }
+            else{
+                res.write(data)
+            }
+            res.end()
+        })
+    }
 })
 
 server.listen(7777)
