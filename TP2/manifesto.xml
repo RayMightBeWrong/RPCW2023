@@ -1,1 +1,33 @@
-tmp
+<?xml version="1.0" encoding="UTF-8"?>
+<manifesto>
+    <meta>
+        <título>Trabalho de Casa 2</título>
+	<!-- <subtítulo></subtítulo> -->
+        <data>2023-02-26</data>
+	<autor>
+		<nome>Rui Miguel Borges Braga</nome>
+		<id>PG50743</id>
+		<gitlink>https://github.com/RayMightBeWrong/RPCW2023</gitlink>
+        </autor>
+        <uc>RPCW</uc>
+    </meta>
+    <resumo>
+        <p>Neste trabalho de casa, pretendia-se, a partir de um ficheiro xml com informação sobre arqueossítios, 
+            criar um site capaz de compilar a informação presente no ficheiro.</p>
+        <p>Existiam 4 diferentes níveis de complexidade na tarefa:</p>
+        <p><b>1.</b> Processar o dataset usando os módulos BeautifulSoup e lxml de Python para criar um ficheiro xml para cada registo.</p>
+        <p><b>2.</b> Criar um servidor em JavaS*cript que seja capaz de server os registos com os ficheiros xml.</p>
+        <p><b>3</b> Criar a <i>homepage</i> index.html.</p>
+        <p><b>4.</b> Representar a informação dos ficheiros xml em ficheiros html.</p>
+    </resumo>
+    <resultados>
+        <resultado path="https://github.com/RayMightBeWrong/RPCW2023/blob/master/TP2/servidor.js">Servidor em JavaScript</resultado>
+        <resultado path="https://github.com/RayMightBeWrong/RPCW2023/blob/master/TP2/index.py">Script Python que gera a homepage do site (index.html)</resultado>
+        <resultado path="https://github.com/RayMightBeWrong/RPCW2023/blob/master/TP2/index.html">Homepage do site</resultado>
+        <resultado path="https://github.com/RayMightBeWrong/RPCW2023/blob/master/TP2/arq_xml.py">Script Python que cria os ficheiro xml correspondentes a cada registo</resultado>
+        <resultado path="https://github.com/RayMightBeWrong/RPCW2023/blob/master/TP2/arq_html.py">Script Python que cria os ficheiro html correspondentes a cada registo</resultado>
+        <resultado path="https://github.com/RayMightBeWrong/RPCW2023/blob/master/TP2/arq.xml">Dataset original com informação sobre arqueossítios</resultado>
+        <resultado path="https://github.com/RayMightBeWrong/RPCW2023/tree/master/TP2/xml_files">Ficheiros xml gerados</resultado>
+        <resultado path="https://github.com/RayMightBeWrong/RPCW2023/tree/master/TP2/html_files">Ficheiros html gerados</resultado>
+    </resultados>
+</manifesto>
