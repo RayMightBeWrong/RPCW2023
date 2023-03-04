@@ -1,3 +1,79 @@
+exports.workDistribution = function(list){
+    var pagHTML = `
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>About people...</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="w3.css"> 
+    </head>
+    <body>
+        <h1>Distribuição por Profissão</h1>
+        <div class="table">
+        <table class="w3-table-all w3-hoverable" border="1">
+            <tr class="w3-teal">
+                <th style="text-align:center;">Designação</th>
+                <th style="text-align:center;">Número de Profissionais</th>
+            </tr>
+    `
+
+    for(let i = 0; i < list.length; i++){
+        pagHTML += `
+            <tr>
+                <td style="text-align:center;"><a style="text-decoration:none" href="/work_${list[i][0]}">${list[i][0]}</a></td>
+                <td style="text-align:center;"><a style="text-decoration:none" href="/work_${list[i][0]}">${list[i][1]}</a></td>
+            </tr>
+    `
+    }
+
+    pagHTML += `
+        </table>
+        </div>
+    </body>
+</html>
+    `
+
+    return pagHTML
+}
+
+exports.sportDistribution = function(sport_list){
+    var pagHTML = `
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>About people...</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="w3.css"> 
+    </head>
+    <body>
+        <h1>Distribuição por Desporto</h1>
+        <div class="table">
+        <table class="w3-table-all w3-hoverable" border="1">
+            <tr class="w3-teal">
+                <th style="text-align:center;">Designação</th>
+                <th style="text-align:center;">Número de Praticantes</th>
+            </tr>
+    `
+
+    for(let i = 0; i < sport_list.length; i++){
+        pagHTML += `
+            <tr>
+                <td style="text-align:center;"><a style="text-decoration:none" href="/sport_${sport_list[i][0]}">${sport_list[i][0]}</a></td>
+                <td style="text-align:center;"><a style="text-decoration:none" href="/sport_${sport_list[i][0]}">${sport_list[i][1]}</a></td>
+            </tr>
+    `
+    }
+
+    pagHTML += `
+        </table>
+        </div>
+    </body>
+</html>
+    `
+
+    return pagHTML
+}
+
 exports.genderDistribution = function(male, female, other){
     var pagHTML = `
 <!DOCTYPE html>
@@ -51,11 +127,11 @@ exports.homePage = function(lista){
 
         pagHTML += `
             <tr>
-                <td style="text-align:center;"><a style="text-decoration:none" href="/${lista[i].id}">${lista[i].id}</a></td>
-                <td style="text-align:center;"><a style="text-decoration:none" href="/${lista[i].id}">${lista[i].nome}</a></td>
-                <td style="text-align:center;"><a style="text-decoration:none" href="/${lista[i].id}">${lista[i].idade}</a></td>
-                <td style="text-align:center;"><a style="text-decoration:none" href="/${lista[i].id}">${lista[i].sexo}</a></td>
-                <td style="text-align:center;"><a style="text-decoration:none" href="/${lista[i].id}">${cidade}</a></td>
+                <td style="text-align:center;"><a style="text-decoration:none" href="/id_${lista[i].id}">${lista[i].id}</a></td>
+                <td style="text-align:center;"><a style="text-decoration:none" href="/id_${lista[i].id}">${lista[i].nome}</a></td>
+                <td style="text-align:center;"><a style="text-decoration:none" href="/id_${lista[i].id}">${lista[i].idade}</a></td>
+                <td style="text-align:center;"><a style="text-decoration:none" href="/id_${lista[i].id}">${lista[i].sexo}</a></td>
+                <td style="text-align:center;"><a style="text-decoration:none" href="/id_${lista[i].id}">${cidade}</a></td>
             </tr>
         `
     }
