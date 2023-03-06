@@ -11,56 +11,54 @@ var server = http.createServer(function (req, res){
     var dicURL = url.parse(req.url, true)
 
     if (dicURL.pathname === '/'){
-        /* 
-        lista das pessoas
-
+        res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
+        res.end(mypages.homePage())        
+    }
+    else if (dicURL.pathname === '/pessoas'){
         axios.get("http://localhost:3000/pessoas")
-            .then(function(resp){
-                var pessoas = resp.data
-                res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
-                res.end(mypages.homePage(pessoas))
-            })
-            .catch(erro => {
-                res.writeHead(404, {'Content-Type': 'text/html; charset=utf-8'})
-                res.end('Erro: ' + erro)
-                console.log('Erro axios: ' + erro)
-            })
-        */
-
-        /* distribuição por género
+        .then(function(resp){
+            var pessoas = resp.data
+            res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
+            res.end(mypages.lista(pessoas))
+        })
+        .catch(erro => {
+            res.writeHead(404, {'Content-Type': 'text/html; charset=utf-8'})
+            res.end('Erro: ' + erro)
+            console.log('Erro axios: ' + erro)
+        })
+    }
+    else if (dicURL.pathname === '/genero'){
         axios.get("http://localhost:3000/pessoas?sexo=masculino")
-            .then(function(resp){
-                var male_nr = resp.data.length
-                axios.get("http://localhost:3000/pessoas?sexo=feminino")
-                    .then(function(resp){
-                        var female_nr = resp.data.length
-                        axios.get("http://localhost:3000/pessoas?sexo=outro")
-                            .then(function(resp){
-                                var other_nr = resp.data.length
-                                res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
-                                res.end(mypages.genderDistribution(male_nr, female_nr, other_nr))
-                            })
-                            .catch(erro => {
-                                res.writeHead(404, {'Content-Type': 'text/html; charset=utf-8'})
-                                res.end('Erro: ' + erro)
-                                console.log('Erro axios: ' + erro)
-                            })
-                    })
-                    .catch(erro => {
-                        res.writeHead(404, {'Content-Type': 'text/html; charset=utf-8'})
-                        res.end('Erro: ' + erro)
-                        console.log('Erro axios: ' + erro)
-                    })
-            })
-            .catch(erro => {
-                res.writeHead(404, {'Content-Type': 'text/html; charset=utf-8'})
-                res.end('Erro: ' + erro)
-                console.log('Erro axios: ' + erro)
-            })
-        */
-
-        /* Distribuição por Desporto 
-
+        .then(function(resp){
+            var male_nr = resp.data.length
+            axios.get("http://localhost:3000/pessoas?sexo=feminino")
+                .then(function(resp){
+                    var female_nr = resp.data.length
+                    axios.get("http://localhost:3000/pessoas?sexo=outro")
+                        .then(function(resp){
+                            var other_nr = resp.data.length
+                            res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
+                            res.end(mypages.genderDistribution(male_nr, female_nr, other_nr))
+                        })
+                        .catch(erro => {
+                            res.writeHead(404, {'Content-Type': 'text/html; charset=utf-8'})
+                            res.end('Erro: ' + erro)
+                            console.log('Erro axios: ' + erro)
+                        })
+                })
+                .catch(erro => {
+                    res.writeHead(404, {'Content-Type': 'text/html; charset=utf-8'})
+                    res.end('Erro: ' + erro)
+                    console.log('Erro axios: ' + erro)
+                })
+        })
+        .catch(erro => {
+            res.writeHead(404, {'Content-Type': 'text/html; charset=utf-8'})
+            res.end('Erro: ' + erro)
+            console.log('Erro axios: ' + erro)
+        })
+    }
+    else if (dicURL.pathname === '/desporto'){
         axios.get("http://localhost:3000/pessoas")
             .then(function(resp){
                 var pessoas = resp.data
@@ -92,10 +90,8 @@ var server = http.createServer(function (req, res){
                 res.end('Erro: ' + erro)
                 console.log('Erro axios: ' + erro)
             })
-        */
-
-        /* Distribuição por Profissão */
-        
+    }
+    else if (dicURL.pathname === '/trabalho'){
         axios.get("http://localhost:3000/pessoas")
             .then(function(resp){
                 var pessoas = resp.data
@@ -127,14 +123,13 @@ var server = http.createServer(function (req, res){
                 res.end('Erro: ' + erro)
                 console.log('Erro axios: ' + erro)
             })
-        
     }
     else if (dicURL.pathname === '/masculino'){
         axios.get("http://localhost:3000/pessoas?sexo=masculino")
             .then(function(resp){
                 var pessoas = resp.data
                 res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
-                res.end(mypages.homePage(pessoas))
+                res.end(mypages.lista(pessoas))
             })
             .catch(erro => {
                 res.writeHead(404, {'Content-Type': 'text/html; charset=utf-8'})
@@ -147,7 +142,7 @@ var server = http.createServer(function (req, res){
             .then(function(resp){
                 var pessoas = resp.data
                 res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
-                res.end(mypages.homePage(pessoas))
+                res.end(mypages.lista(pessoas))
             })
             .catch(erro => {
                 res.writeHead(404, {'Content-Type': 'text/html; charset=utf-8'})
@@ -160,7 +155,7 @@ var server = http.createServer(function (req, res){
             .then(function(resp){
                 var pessoas = resp.data
                 res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
-                res.end(mypages.homePage(pessoas))
+                res.end(mypages.lista(pessoas))
             })
             .catch(erro => {
                 res.writeHead(404, {'Content-Type': 'text/html; charset=utf-8'})
@@ -185,7 +180,7 @@ var server = http.createServer(function (req, res){
                 }
 
                 res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
-                res.end(mypages.homePage(filtered))
+                res.end(mypages.lista(filtered))
             })
             .catch(erro => {
                 res.writeHead(404, {'Content-Type': 'text/html; charset=utf-8'})
@@ -204,7 +199,7 @@ var server = http.createServer(function (req, res){
             .then(function(resp){
                 var pessoas = resp.data
                 res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
-                res.end(mypages.homePage(pessoas))
+                res.end(mypages.lista(pessoas))
             })
             .catch(erro => {
                 res.writeHead(404, {'Content-Type': 'text/html; charset=utf-8'})

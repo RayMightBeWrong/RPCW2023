@@ -98,7 +98,27 @@ exports.genderDistribution = function(male, female, other){
     return pagHTML
 }
 
-exports.homePage = function(lista){
+exports.homePage = function(){
+    var pagHTML = `
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>About people...</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="w3.css"> 
+    </head>
+    <body>
+        <h1>HomePage</h1>
+        <h3><a href="/pessoas">Lista de Pessoas</a></h3>
+        <h3><a href="/genero">Distribuição por Género</a></h3>
+        <h3><a href="/desporto">Distribuição por Desporto</a></h3>
+        <h3><a href="/trabalho">TOP 10 Profissões</a></h3>
+    </body>
+</html>`
+    return pagHTML
+}
+
+exports.lista = function(lista){
     var pagHTML = `
 <!DOCTYPE html>
 <html>
@@ -146,7 +166,6 @@ exports.homePage = function(lista){
 }
 
 exports.personPage = function(person){
-    //console.log(person)
     var pagHTML = `
 <!DOCTYPE html>
 <html>
@@ -157,6 +176,11 @@ exports.personPage = function(person){
     </head>
     <body>
         <h1>${person.nome}</h1>
+        <p>Idade: ${person.idade}</p>
+        <p>Sexo: ${person.sexo}</p>
+        <p>Profissão: ${person.profissao}</p>
+        <p>Descrição: ${person.descrição}</p>
+        <p>Animais: ${person.animais}</p>
     </body>
 </html>
     `
