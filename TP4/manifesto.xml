@@ -1,1 +1,27 @@
-tmp
+<?xml version="1.0" encoding="UTF-8"?>
+<manifesto>
+    <meta>
+        <título>Trabalho de Casa 4</título>
+        <!-- <subtítulo></subtítulo> -->
+        <data>2023-03-12</data>
+        <autor>
+            <nome>Rui Miguel Borges Braga</nome>
+            <id>PG50743</id>
+            <gitlink>https://github.com/RayMightBeWrong/RPCW2023</gitlink>
+        </autor>
+        <uc>RPCW</uc>
+    </meta>
+    <resumo>
+        <p>Neste trabalho de casa, pretendia-se fazer uma single page application para uma lista de tarefas.</p>
+        <p>A página devia ter 3 áreas: formulário para inserir tarefa, lista de tarefas a fazer e lista de tarefas feitas.</p>
+        <p>Cada tarefa tem 3 componentes: deadline, descrição e quem realiza a tarefa.</p>
+        <p>Deveria ser possível remover e editar tarefas de ambas as listas e mover tarefas a fazer para tarefas completas.</p>
+    </resumo>
+    <resultados>
+        <resultado path="https://github.com/RayMightBeWrong/RPCW2023/blob/master/TP4/server.js">Servidor responsável pela aplicação</resultado>
+        <resultado path="https://github.com/RayMightBeWrong/RPCW2023/blob/master/TP4/templates.js">Script JavaScript que cria templates para a página</resultado>
+        <resultado path="https://github.com/RayMightBeWrong/RPCW2023/blob/master/TP4/tasks.json">Dataset de tarefas</resultado>
+        <resultado path="https://github.com/RayMightBeWrong/RPCW2023/blob/master/TP4/static.js">Script JavaScript que trata do pedido de recursos estáticos</resultado>
+        <resultado path="https://github.com/RayMightBeWrong/RPCW2023/tree/master/TP4/public">Diretoria com recursos estáticos para a aplicação</resultado>
+    </resultados>
+</manifesto>
