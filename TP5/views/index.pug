@@ -1,0 +1,102 @@
+extends layout
+
+block content
+    header.w3-container(style="background-color:#000000")
+        center
+            h1(style="color:white") Task Management
+
+    .w3-container(style="background-color:#1A1A1A")
+        center
+            h2(style="color:white;") Task Form
+
+    .w3-container(style="background-color:#1A1A1A")
+        form.w3-container(method="POST")
+            fieldset(style="border:none")
+                label(style="color:white") Description
+                input.w3-input.w3-round(type="text" name="task" required)
+                label(style="color:white") Person(s) accountable for task
+                input.w3-input.w3-round(type="text" name="taskmaster" required)
+                label(style="color:white") Deadline
+                input.w3-input.w3-round(type="datetime-local" name="deadline" required)
+            br
+            center
+                button.w3-btn.w3-mb-2(style="background-color:#cc0000; color:white" type="submit") Add New Task
+            br
+
+    .w3-cell-row(style="background-color:#1A1A1A")
+        .w3-container.w3-cell.w3-half(style="background-color:#bb0000")
+            center
+                h3(style="color:white;") To Do List
+            br
+            ul.w3-ul.w3-card-4(style="background-color:#dd1111")
+                each val in to_do
+                    li.w3-bar.w3-leftbar 
+                        .w3-bar-item(style="color:white")
+                            table
+                                td(width="50%")
+                                    span.w3-large Task: #{val.task}
+                                    br
+                                    span.w3-large Person(s) accountable for task: #{val.taskmaster}
+                                    br
+                                    span Deadline: #{val.deadline}
+                                    table
+                                        td
+                                            form.w3-container(action="http://localhost:7777/delete/td/" + val.id method="post")
+                                                button.w3-button(type="submit"  style="background-color:#ff0000;color:white") Delete
+                                        td
+                                            form.w3-container(action="http://localhost:7777/complete/" + val.id method="post")
+                                                button.w3-button(type="submit" style="background-color:#00cc00;color:white") Mark as Solved
+                                td(width="50%")
+                                    .w3-container.w3-right(style="background-color:#1A1A1A")
+                                        form.w3-container(action="http://localhost:7777/edit/td/" + val.id method="post")
+                                            fieldset(style="border:none")
+                                                label(style="color:white") Description
+                                                input.w3-input.w3-round(type="text" name="task" value= val.task required)
+                                                label(style="color:white") Person(s) accountable for task
+                                                input.w3-input.w3-round(type="text" name="taskmaster" value= val.taskmaster required)
+                                                label(style="color:white") Deadline
+                                                input.w3-input.w3-round(type="datetime-local" name="deadline" value= val.deadline required)
+                                                br
+                                                center
+                                                    button.w3-button(type="submit" style="background-color:#ff9900;color:white") Edit
+                                                br
+            br
+
+        .w3-container.w3-green.w3-cell.w3-half
+            center
+                h3(style="color:white;") Tasks Completed
+            br
+            ul.w3-ul.w3-card-4(style="background-color:#11dd11")
+                each val in done
+                    li.w3-bar.w3-leftbar
+                        .w3-bar-item(style="color:white")
+                            table
+                                td(width="50%")
+                                    span.w3-large Task: #{val.task}
+                                    br
+                                    span.w3-large Person(s) accountable for task: #{val.taskmaster}
+                                    br
+                                    span Deadline: #{val.deadline}
+                                    table
+                                        td
+                                            form.w3-container(action="http://localhost:7777/delete/done/" + val.id method="post")
+                                                button.w3-button(type="submit" style="background-color:#ff0000;color:white") Delete
+                
+                                td
+                                    .w3-container.w3-right(style="background-color:#1A1A1A")
+                                        form.w3-container(action="http://localhost:7777/edit/done/" + val.id method="post")
+                                            fieldset(style="border:none")
+                                                label(style="color:white") Description
+                                                input.w3-input.w3-round(type="text" name="task" value= val.task required)
+                                                label(style="color:white") Person(s) accountable for task
+                                                input.w3-input.w3-round(type="text" name="taskmaster" value= val.taskmaster required)
+                                                label(style="color:white") Deadline
+                                                input.w3-input.w3-round(type="datetime-local" name="deadline" value= val.deadline required)
+                                                br
+                                                center
+                                                    button.w3-button(type="submit" style="background-color:#ff9900;color:white") Edit
+                                                br
+            br
+
+    footer.w3-container(style="background-color:#000000")
+        h5(style="color:white") Generated by RPCW2023 in #{d}
