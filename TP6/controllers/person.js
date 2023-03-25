@@ -17,7 +17,6 @@ module.exports.list = () => {
 module.exports.getPerson = id => {
     return person.find({id: id})
                 .then(student => {
-                    console.log(student)
                     return student[0]
                 })
                 .catch(erro => {
@@ -26,7 +25,7 @@ module.exports.getPerson = id => {
 }
 
 module.exports.deletePerson = id => {
-    return person.find({id: id})
+    return person.deleteOne({id: id})
                 .then(student => {
                     console.log(student)
                     return student[0]

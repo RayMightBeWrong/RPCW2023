@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
             })  
         })
         .catch(erro => {
-            res.render('error', {error: erro, message: "Erro occurred obtaining list of people."})
+            res.render('error', {error: erro, message: "Error occurred while obtaining list of people."})
         })
 })
 
@@ -40,7 +40,30 @@ router.get('/people/:idPerson', function(req, res, next){
             })
         })
         .catch(erro => {
-            res.render('error', {error: erro, message: "Erro occurred obtaining person."})
+            res.render('error', {error: erro, message: "Error occurred while obtaining person."})
+        })
+})
+
+router.get('/people/delete/:idPerson', function(req, res, next){
+    person.getPerson(req.params.idPerson)
+        .then(person => {
+            res.render('deletePersonForm', {
+                date: new Date().toISOString().substring(0, 16),
+                p: person
+            })
+        })
+        .catch(erro => {
+            res.render('error', {error: erro, message: "Error occurred while obtaining person."})
+        })
+})
+
+router.get('/people/delete/:idPerson/confirm', function(req, res, next){
+    person.deletePerson(req.params.idPerson)
+        .then(resposta => {
+            res.redirect('/')
+        })
+        .catch(erro => {
+            res.render('error', {error: erro, message: "Error occurred while deleting person."})
         })
 })
 
