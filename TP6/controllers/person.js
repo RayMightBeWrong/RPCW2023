@@ -16,16 +16,24 @@ module.exports.list = () => {
 
 module.exports.getPerson = id => {
     return person.find({id: id})
-                .then(student => {
-                    return student[0]
+                .then(person => {
+                    return person[0]
                 })
                 .catch(erro => {
                     return erro
                 })
 }
 
-function compileArray(body, id){
+function compileArray(body, id, checkBefore){
     var res = []
+
+    if (checkBefore){
+        for(let i = 0; i < 10; i++){
+            var before = 'b' + id + i
+            if (before in body)
+                res.push(body[before])
+        }
+    }
 
     nr = 1
     while(id + nr in body){
@@ -44,10 +52,14 @@ function compileAtributos(body){
 
     attributes = ['fumador', 'gosta_cinema', 'gosta_viajar', 'acorda_cedo', 'gosta_ler', 'gosta_musica', 'gosta_comer', 'gosta_animais_estimacao', 'gosta_dancar']
     for (i in attributes){
-        if (attributes[i] in body)
-            res[attributes[i]] = body[attributes[i]]
+        if (attributes[i] in body){
+            if (body[attributes[i]] == 'false')
+                res[attributes[i]] = false
+            else if (body[attributes[i]] == 'true')
+                res[attributes[i]] = true
+        }
         else
-            res[attributes[i]] = 'false'
+            res[attributes[i]] = false
     }
 
     return res
@@ -70,10 +82,10 @@ module.exports.addPerson = body => {
         profissao: body.profissao,
         marca_carro: body.marca_carro,
         partido_politico: partido_politico,
-        desportos: compileArray(body, 'desporto'),
-        animais: compileArray(body, 'animal'),
-        figura_publica_pt: compileArray(body, 'pf'),
-        destinos_favoritos: compileArray(body, 'fd'),
+        desportos: compileArray(body, 'desporto', false),
+        animais: compileArray(body, 'animal', false),
+        figura_publica_pt: compileArray(body, 'pf', false),
+        destinos_favoritos: compileArray(body, 'fd', false),
         atributos: compileAtributos(body)
     }
 
@@ -83,6 +95,39 @@ module.exports.addPerson = body => {
     var data = new person(personToAdd)
 
     return data.save()
+                .then(person => {
+                    return person
+                })
+                .catch(error => {
+                    return error
+                })
+}
+
+module.exports.editPerson = (id, body) => {
+    morada = { cidade: body.cidade, distrito: body.distrito }
+
+    partido_politico = { party_abbr: body.partido_abbr, party_name: body.partido_nome }
+
+    personToEdit = {
+        id: body.id,
+        nome: body.nome,
+        BI: body.BI,
+        idade: body.idade,
+        sexo: body.sexo,
+        descrição: body.descricao,
+        morada: morada,
+        religiao: body.religiao,
+        profissao: body.profissao,
+        marca_carro: body.marca_carro,
+        partido_politico: partido_politico,
+        desportos: compileArray(body, 'desporto', true),
+        animais: compileArray(body, 'animal', true),
+        figura_publica_pt: compileArray(body, 'pf', true),
+        destinos_favoritos: compileArray(body, 'fd', true),
+        atributos: compileAtributos(body)
+    }
+
+    return person.findOneAndUpdate({id: id}, personToEdit)
                 .then(person => {
                     return person
                 })

@@ -29,7 +29,7 @@ router.get('/people/:idPerson', function(req, res, next){
             })
         })
         .catch(erro => {
-            res.render('error', {error: erro, message: "Error occurred while- obtaining person."})
+            res.render('error', {error: erro, message: "Error occurred while obtaining person."})
         })
 })
 
@@ -56,12 +56,36 @@ router.get('/people/delete/:idPerson/confirm', function(req, res, next){
         })
 })
 
-router.post('/people/register', (req,res) => {
+router.get('/people/edit/:idPerson', function(req, res, next){
+    person.getPerson(req.params.idPerson)
+        .then(person => {
+            console.log(person)
+            res.render('editPersonForm', {
+                date: new Date().toISOString().substring(0, 16),
+                p: person
+            })
+        })
+        .catch(erro => {
+            res.render('error', {error: erro, message: "Error occurred while obtaining person."})
+        })
+})
+
+router.post('/people/edit/:idPerson', (req,res) => {
     console.log(req.body)
-    person.addPerson(req.body)
-        .then(aluno => {
+    person.editPerson(req.params.idPerson, req.body)
+        .then(person => {
             res.redirect('/')
-            //res.render('addAlunoConfirm', {a: aluno})
+        })
+        .catch(erro => {
+            res.render('error', {error: erro, message: "Error occurred while adding person."})
+        })
+})
+
+router.post('/people/register', (req,res) => {
+    person.addPerson(req.body)
+        .then(person => {
+            console.log(person)
+            res.redirect('/')
         })
         .catch(erro => {
             res.render('error', {error: erro, message: "Error occurred while adding person."})

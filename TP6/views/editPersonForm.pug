@@ -1,0 +1,125 @@
+extends layout 
+
+block content 
+    .w3-card-4
+        header.w3-container(style="background-color:#000000")
+            h2(style="color:white") Student Form
+        form.w3-container(method="POST")
+            fieldset
+                legend ID
+                p= p.id
+            fieldset
+                legend Name
+                input.w3-input.w3-round(type="text" name="nome" value=p.nome required)
+            fieldset
+                legend BI
+                input.w3-input.w3-round(type="text" name="BI" value=p.BI)
+            fieldset
+                legend Age
+                input.w3-input.w3-round(type="number" name="idade" value=p.idade)
+            fieldset
+                legend Gender
+                if p.sexo == 'masculino'
+                    select(name="sexo")
+                        option= p.sexo
+                        option feminino
+                        option outro
+                else if p.sexo == 'feminino'
+                    select(name="sexo")
+                        option= p.sexo
+                        option masculino
+                        option outro
+                else if p.sexo == 'outro'
+                    select(name="sexo")
+                        option= p.sexo
+                        option masculino
+                        option feminino
+            fieldset
+                legend Description
+                input.w3-input.w3-round(type="text" name="descricao" value=p.descrição)
+            fieldset
+                legend Address
+                label District
+                input.w3-input.w3-round(type="text" name="distrito" value=p.morada.distrito)
+                label City
+                input.w3-input.w3-round(type="text" name="cidade" value=p.morada.cidade)
+            fieldset
+                legend Political Party
+                label Abbreviation
+                input.w3-input.w3-round(type="text" name="partido_abbr" value=p.partido_politico.party_abbr)
+                label Name
+                input.w3-input.w3-round(type="text" name="partido_nome" value=p.partido_politico.party_name)
+            fieldset
+                legend Religion
+                input.w3-input.w3-round(type="text" name="religiao" value=p.religiao)
+            fieldset
+                legend Occupation
+                input.w3-input.w3-round(type="text" name="profissao" value=p.profissao)
+            fieldset
+                legend Favourite Car Brand
+                input.w3-input.w3-round(type="text" name="marca_carro" value=p.marca_carro)
+            fieldset
+                legend Favourite Food
+                input.w3-input.w3-round(type="text" name="comida_favorita" value=p.atributos.comida_favorita)
+            fieldset 
+                legend Sports
+                each val, index in p.desportos
+                    label Sport #{index+1}
+                    input(type='text' value=val)
+                    input.w3-check(type="checkbox" name='bdesporto'+index value=val checked)
+                    br
+                button(onClick="add('desporto', 'Sport', true)" type="button") + 
+                button(onClick="del('desporto')" type="button") X
+                .w3-container(id='desportos')
+                script(src="/javascripts/script.js")
+            fieldset 
+                legend Animals
+                each val, index in p.animais
+                    label Animal #{index+1}
+                    input(type='text' value=val)
+                    input.w3-check(type="checkbox" name='banimal'+index value=val checked)
+                    br
+                button(onClick="add('animal', 'Animal', true)" type="button") + 
+                button(onClick="del('animal')" type="button") X
+                .w3-container(id='animals')
+                script(src="/javascripts/script.js")
+            fieldset 
+                legend Public Figures PT
+                each val, index in p.figura_publica_pt
+                    label Public Figure #{index+1}
+                    input(type='text' value=val)
+                    input.w3-check(type="checkbox" name='bpf'+index value=val checked)
+                    br
+                button(onClick="add('pf', 'Public Figure', true)" type="button") + 
+                button(onClick="del('pf')" type="button") X
+                .w3-container(id='pfs')
+                script(src="/javascripts/script.js")
+            fieldset 
+                legend Favourite Destinations
+                each val, index in p.destinos_favoritos
+                    label Favourite Destination #{index+1}
+                    input(type='text' value=val)
+                    input.w3-check(type="checkbox" name='bfd'+index value=val checked)
+                    br
+                button(onClick="add('fd', 'Favourite Destination', true)" type="button") + 
+                button(onClick="del('fd')" type="button") X
+                .w3-container(id='fds')
+                script(src="/javascripts/script.js")
+        
+            fieldset
+                legend Extra Info
+                each val in [['fumador', 'Smoker'], ['gosta_cinema', 'Likes Cinema'], ['gosta_viajar', 'Likes to Travel'], ['acorda_cedo', 'Wakes Up Early'], ['gosta_ler', 'Likes to Read'], ['gosta_musica', 'Likes Music'], ['gosta_comer', 'Likes to Eat'], ['gosta_animais_estimacao', 'Likes Pets'], ['gosta_dancar', 'Likes to Dance']]
+                    if p.atributos[val[0]]
+                        input.w3-check(type="checkbox" name=val[0] value="true" checked)
+                        label= val[1]
+                    else
+                        input.w3-check(type="checkbox" name=val[0] value="true")
+                        label= val[1]
+                    br
+
+
+            center
+                button.w3-btn.w3-green.w3-mb-2(type="submit") Edit
+               
+        footer.w3-container(style="background-color:#000000")
+            h5(style="color:white") Generated by EngWeb2023 in #{date} - [#[a(href="/") Return]]
