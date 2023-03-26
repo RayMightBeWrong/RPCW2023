@@ -24,7 +24,6 @@ var atributosSchema = new mongoose.Schema({
 })
 
 var personSchema = new mongoose.Schema({
-    _id: String,
     id: String,
     nome: String,
     BI: String,
@@ -43,5 +42,4 @@ var personSchema = new mongoose.Schema({
     atributos: atributosSchema
 })
 
-// atributos
 module.exports = mongoose.model('pessoa', personSchema)
