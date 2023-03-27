@@ -1,1 +1,26 @@
-tmp
+<?xml version="1.0" encoding="UTF-8"?>
+<manifesto>
+    <meta>
+        <título>Trabalho de Casa 6</título>
+        <!-- <subtítulo></subtítulo> -->
+        <data>2023-03-15</data>
+        <autor>
+            <nome>Rui Miguel Borges Braga</nome>
+            <id>PG50743</id>
+            <gitlink>https://github.com/RayMightBeWrong/RPCW2023</gitlink>
+        </autor>
+        <uc>RPCW</uc>
+    </meta>
+    <resumo>
+        <p>Neste trabalho de casa, pretendia-se fazer o TP4, usando o express-generator.</p>
+    </resumo>
+    <resultados>
+        <resultado path="https://github.com/RayMightBeWrong/RPCW2023/blob/master/TP6/app.js">Servidor responsável pela aplicação</resultado>
+        <resultado path="https://github.com/RayMightBeWrong/RPCW2023/tree/master/TP6/views">Diretoria com ficheiros .pug responsável pelo aspeto da aplicação</resultado>
+        <resultado path="https://github.com/RayMightBeWrong/RPCW2023/tree/master/TP6/routes">Diretoria com ficheiros .js responsáveis por definir a resposta a cada pedido feito</resultado>
+        <resultado path="https://github.com/RayMightBeWrong/RPCW2023/tree/master/TP6/public">Diretoria com recursos estáticos para a aplicação</resultado>
+        <resultado path="https://github.com/RayMightBeWrong/RPCW2023/tree/master/TP6/controllers/person.js">Script JavaScript com funções que manipulam o dataset de dados e que faz ligação com o MongoDB</resultado>
+        <resultado path="https://github.com/RayMightBeWrong/RPCW2023/blob/master/TP6/models/person.js">Script JavaScript que declara schemas para o MongoDB</resultado>
+        <resultado path="https://github.com/RayMightBeWrong/RPCW2023/blob/master/TP6/pessoas.json">Dataset de pessoas</resultado>
+    </resultados>
+</manifesto>
